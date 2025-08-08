@@ -36,6 +36,6 @@ jobs:
           curl -fsSL https://dl-cli.pstmn.io/install/linux64.sh -o postman-install.sh
           chmod +x postman-install.sh
           ./postman-install.sh
-          postman login --with-api-key PMAK-68966f6525636500019d2611-8df9349166c6500f17a9fe81fae1fb03
+          postman login --with-api-key PMAK-68967a9dbd1e9b00017e59f4-a01e342d7420ff816b0a1a8836857c241d
           postman collection run "41098615-615f65f6-e26a-4b37-87be-6a122c21992c" -e "41098615-244737a8-96d6-4363-961b-db84ca091c5f"
 
