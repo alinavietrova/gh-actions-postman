@@ -2,53 +2,38 @@
 
 name: CI
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-    jobs:
   run-postman-tests:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Install Postman CLI
-        run: npm install -g postman-cli
-
-      - name: Disable SSL cert validation
-        run: postman config set "certificateValidation" false
-
-      - name: Run Postman collection
-        run: postman collection run "tests/collection.json"
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # Checkout репозиторий
       - uses: actions/checkout@v4
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      # Установка Postman CLI
+      - name: Install Postman CLI
         run: |
-          set -e
           curl -fsSL https://dl-cli.pstmn.io/install/linux64.sh -o postman-install.sh
           chmod +x postman-install.sh
           ./postman-install.sh
-          postman login --with-api-key PMAK-6896eef2469a990001f4e030-ac7c1d01adf8b4c7436ea8e0aa6ba13524
-          postman collection run "41098615-615f65f6-e26a-4b37-87be-6a122c21992c" -e "41098615-244737a8-96d6-4363-961b-db84ca091c5f"
+
+      # Авторизация Postman CLI
+      - name: Login to Postman
+        run: postman login --with-api-key PMAK-6896eef2469a990001f4e030-ac7c1d01adf8b4c7436ea8e0aa6ba13524
+
+      # Отключение проверки SSL-сертификатов
+      - name: Disable SSL Certificate Validation
+        run: postman config set "certificateValidation" false
+
+      # Запуск коллекции
+      - name: Run Postman collection
+        run: |
+          postman collection run "41098615-615f65f6-e26a-4b37-87be-6a122c21992c" \
+          -e "41098615-244737a8-96d6-4363-961b-db84ca091c5f"
