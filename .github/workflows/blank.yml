@@ -37,3 +37,4 @@ jobs:
         run: |
           postman collection run "41098615-615f65f6-e26a-4b37-87be-6a122c21992c" \
           -e "41098615-244737a8-96d6-4363-961b-db84ca091c5f"
+          postman collection run "COLLECTION_ID" -e tests/env.json
