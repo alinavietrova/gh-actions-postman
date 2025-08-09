@@ -35,5 +35,5 @@ jobs:
       # Запуск коллекции
       - name: Run Postman collection
         run: |
-          postman login --with-api-key PMAK-6896eef2469a990001f4e030-ac7c1d01adf8b4c7436ea8e0aa6ba13524 \
-          postman collection run "41098615-615f65f6-e26a-4b37-87be-6a122c21992c" -e "41098615-244737a8-96d6-4363-961b-db84ca091c5f" --insecure \
+          postman login --with-api-key PMAK-6896eef2469a990001f4e030-ac7c1d01adf8b4c7436ea8e0aa6ba13524
+          postman collection run "41098615-615f65f6-e26a-4b37-87be-6a122c21992c" -e "41098615-244737a8-96d6-4363-961b-db84ca091c5f" --insecure
